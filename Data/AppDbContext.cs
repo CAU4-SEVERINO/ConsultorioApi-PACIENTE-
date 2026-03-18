@@ -10,5 +10,15 @@ namespace ConsultorioApi.Data
         }
 
         public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Consultorio> Consultorios { get; set; }
+        public DbSet<Medico> Medicos { get; set; }
+        public DbSet<Consulta> Consultas { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Paciente>() .HasIndex(p => p.Email).IsUnique();
+            modelBuilder.Entity<Paciente>().HasIndex(p => p.Cpf).IsUnique();
+        }
     }
 }
